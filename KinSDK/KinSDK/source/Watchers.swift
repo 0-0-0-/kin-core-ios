@@ -56,7 +56,7 @@ public class BalanceWatch {
                             case .LEDGER_ENTRY_UPDATED(let le):
                                 if case let LedgerEntry.Data.TRUSTLINE(trustlineEntry) = le.data {
                                     if trustlineEntry.account == account && trustlineEntry.asset == asset {
-                                        balance = Decimal(Double(trustlineEntry.balance) / Double(KinMultiplier))
+                                        balance = Decimal(Double(trustlineEntry.balance) / Double(AssetUnitDivisor))
                                         return balance
                                     }
                                 }

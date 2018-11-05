@@ -46,6 +46,8 @@ public enum AccountStatus: Int {
     case activated
 }
 
+internal let AssetUnitDivisor: UInt64 = 10_000
+
 public struct PaymentInfo {
     private let txEvent: TxEvent
     private let account: String
@@ -72,7 +74,10 @@ public struct PaymentInfo {
     }
 
     public var amount: Decimal {
-        return txEvent.payments.filter({ $0.asset == asset }).first?.amount ?? Decimal(0)
+        if let amount = txEvent.payments.filter({ $0.asset == asset }).first?.amount {
+            return amount / Decimal(AssetUnitDivisor)
+        }
+        return Decimal(0)
     }
 
     public var destination: String {

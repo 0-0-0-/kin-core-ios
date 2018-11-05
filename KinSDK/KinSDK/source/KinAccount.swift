@@ -116,8 +116,6 @@ public protocol KinAccount: class {
 //    func exportKeyStore(passphrase: String, exportPassphrase: String) throws -> String?
 }
 
-let KinMultiplier: UInt64 = 10000000
-
 final class KinStellarAccount: KinAccount {
     internal let stellarAccount: StellarAccount
     fileprivate let node: Stellar.Node
@@ -227,7 +225,7 @@ final class KinStellarAccount: KinAccount {
             return
         }
         
-        let intKin = ((kin * Decimal(KinMultiplier)) as NSDecimalNumber).int64Value
+        let intKin = ((kin * Decimal(AssetUnitDivisor)) as NSDecimalNumber).int64Value
         
         guard intKin > 0 else {
             completion(nil, KinError.invalidAmount)
