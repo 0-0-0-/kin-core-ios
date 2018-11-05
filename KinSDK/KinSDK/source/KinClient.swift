@@ -33,9 +33,7 @@ public final class KinClient {
     public init(with nodeProviderUrl: URL, networkId: NetworkId, appId: AppId) {
         self.node = Stellar.Node(baseURL: nodeProviderUrl, networkId: networkId.stellarNetworkId)
 
-        self.asset = Asset(assetCode: "KIN", issuer: networkId.issuer)!
-
-        self.accounts = KinAccounts(node: node, asset: asset, appId: appId)
+        self.accounts = KinAccounts(node: node, appId: appId)
 
         self.networkId = networkId
     }
@@ -47,7 +45,6 @@ public final class KinClient {
     public private(set) var accounts: KinAccounts
 
     internal let node: Stellar.Node
-    internal let asset: Asset
 
     /**
      The `NetworkId` of the network which this client communicates to.

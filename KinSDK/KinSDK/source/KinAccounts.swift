@@ -14,7 +14,6 @@ public final class KinAccounts {
     private let cacheLock = NSLock()
     
     private let node: Stellar.Node
-    private let asset: Asset
     private let appId: AppId
 
     public var count: Int {
@@ -93,14 +92,13 @@ public final class KinAccounts {
         }()
     }
     
-    init(node: Stellar.Node, asset: Asset, appId: AppId) {
+    init(node: Stellar.Node, appId: AppId) {
         self.node = node
-        self.asset = asset
         self.appId = appId
     }
     
     private func createKinAccount(stellarAccount: StellarAccount) -> KinStellarAccount {
-        return KinStellarAccount(stellarAccount: stellarAccount, asset: asset, node: node, appId: appId)
+        return KinStellarAccount(stellarAccount: stellarAccount, node: node, appId: appId)
     }
     
     func flushCache() {

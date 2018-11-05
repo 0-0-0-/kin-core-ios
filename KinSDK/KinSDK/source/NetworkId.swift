@@ -35,19 +35,6 @@ public enum NetworkId {
 }
 
 extension NetworkId {
-    public var issuer: String {
-        switch self {
-        case .mainNet:
-            return "GBQ3DQOA7NF52FVV7ES3CR3ZMHUEY4LTHDAQKDTO6S546JCLFPEQGCPK"
-        case .testNet:
-            return "GBQ3DQOA7NF52FVV7ES3CR3ZMHUEY4LTHDAQKDTO6S546JCLFPEQGCPK"
-        case .playground:
-            return "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
-        case .custom (let issuer, _):
-            return issuer
-        }
-    }
-
     public var stellarNetworkId: StellarKit.NetworkId {
         switch self {
         case .mainNet:

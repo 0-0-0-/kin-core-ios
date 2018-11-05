@@ -121,7 +121,7 @@ let KinMultiplier: UInt64 = 10000000
 final class KinStellarAccount: KinAccount {
     internal let stellarAccount: StellarAccount
     fileprivate let node: Stellar.Node
-    fileprivate let asset: Asset
+    fileprivate let asset: Asset = .ASSET_TYPE_NATIVE
     fileprivate let appId: AppId
 
     var deleted = false
@@ -144,9 +144,8 @@ final class KinStellarAccount: KinAccount {
         }
     }
     
-    init(stellarAccount: StellarAccount, asset: Asset, node: Stellar.Node, appId: AppId) {
+    init(stellarAccount: StellarAccount, node: Stellar.Node, appId: AppId) {
         self.stellarAccount = stellarAccount
-        self.asset = asset
         self.node = node
         self.appId = appId
     }
